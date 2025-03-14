@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Calculator" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="CalculatorButtonStyle" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:backgroundTint">@color/calculator_button_background</item>
+        <item name="android:textColor">@color/calculator_button_text</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:stateListAnimator">@null</item> <!-- Loại bỏ hiệu ứng elevation mặc định -->
+        <item name="android:elevation">0dp</item> <!-- Đặt elevation về 0 -->
+        <item name="android:translationZ">0dp</item> <!-- Đặt translationZ về 0 -->
+    </style>
+</resources>
