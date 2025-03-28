@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Currency Converter</string>
+
+    <string-array name="currency_from">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>GBP</item>
+        <item>JPY</item>
+        <item>VND</item>
+    </string-array>
+
+    <string-array name="currency_to">
+        <item>VND</item>
+        <item>USD</item>
+        <item>EUR</item>
+        <item>GBP</item>
+        <item>JPY</item>
+    </string-array>
+</resources>

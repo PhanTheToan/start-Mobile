@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:padding="16dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        android:layout_margin="8dp"
+        tools:ignore="MissingClass">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Phần chuyển đổi từ USD -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="8dp"/>
+
+                    <EditText
+                        android:id="@+id/editTextAmount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        android:background="@null"
+                        android:inputType="numberDecimal"/>
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:minHeight="48dp"
+                    android:entries="@array/currency_from"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="United States - Dollar"
+                    android:textSize="16sp"
+                    android:drawableEnd="@android:drawable/arrow_down_float"/>
+            </LinearLayout>
+
+            <!-- Phần kết quả chuyển đổi sang VND -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₫"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="8dp"/>
+
+                    <TextView
+                        android:id="@+id/textViewResult"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        android:background="@null"/>
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:minHeight="48dp"
+                    android:entries="@array/currency_to"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vietnam - Dong"
+                    android:textSize="16sp"
+                    android:drawableEnd="@android:drawable/arrow_down_float"/>
+            </LinearLayout>
+
+            <!-- Tỷ giá hiện tại -->
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1 USD = 23,185.00 VND"
+                android:textSize="14sp"
+                android:layout_marginTop="16dp"
+                android:textColor="#757575"/>
+
+            <!-- Nút chuyển đổi -->
+            <Button
+                android:id="@+id/buttonConvert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chuyển đổi"
+                android:layout_marginTop="24dp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#4285F4"
+                android:padding="12dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

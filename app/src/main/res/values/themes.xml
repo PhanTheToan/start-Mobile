@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Currency" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#4285F4</item>
+        <item name="colorPrimaryVariant">#3367D6</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">#4285F4</item>
+        <item name="colorSecondaryVariant">#3367D6</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Background color. -->
+        <item name="android:windowBackground">#F5F5F5</item>
+        <!-- Text appearance. -->
+        <item name="android:textViewStyle">@style/Widget.AppTheme.TextView</item>
+        <item name="materialButtonStyle">@style/Widget.AppTheme.Button</item>
+    </style>
+
+    <style name="Widget.AppTheme.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">#212121</item>
+    </style>
+
+    <style name="Widget.AppTheme.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="backgroundTint">#4285F4</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+</resources>
