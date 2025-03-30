@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">ManagerStudent</string>
+    <string name="app_name">Manager Student</string>
+    <string name="app_title">Quản lý sinh viên</string>
+    <string name="add_student">Thêm sinh viên mới</string>
+    <string name="student_name">Họ tên</string>
+    <string name="student_id">MSSV</string>
+    <string name="add">Thêm</string>
+    <string name="delete">Xóa</string>
+    <string name="student_list">Danh sách sinh viên</string>
+    <string name="no_students">Chưa có sinh viên nào</string>
+    <string name="action">Thao tác</string>
 </resources>

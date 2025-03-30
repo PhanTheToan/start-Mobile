@@ -1,5 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.ManagerStudent" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
 </resources>
