@@ -1,0 +1,6 @@
+package com.example.managerstudent
+
+data class Student(
+    val name: String,
+    val id: String
+)
