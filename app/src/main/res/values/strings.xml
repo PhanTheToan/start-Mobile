@@ -1,3 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">manager-Student</string>
+    <string name="app_name">Manager Student</string>
+    <string name="add_student">Thêm sinh viên</string>
+    <string name="update_student">Cập nhật sinh viên</string>
+    <string name="delete_student">Xóa sinh viên</string>
+    <string name="call_student">Gọi điện</string>
+    <string name="email_student">Gửi email</string>
+    <string name="no_students">Không có sinh viên nào</string>
+    <string name="save">Lưu</string>
+    <string name="update">Cập nhật</string>
+    <string name="cancel">Hủy</string>
+    <string name="confirm_delete">Xác nhận xóa</string>
+    <string name="confirm_delete_message">Bạn có chắc chắn muốn xóa sinh viên này?</string>
+    <string name="delete">Xóa</string>
+    <string name="student_added">Thêm sinh viên thành công</string>
+    <string name="student_updated">Cập nhật thông tin sinh viên thành công</string>
+    <string name="student_deleted">Xóa sinh viên thành công</string>
+    <string name="student_not_found">Không tìm thấy thông tin sinh viên</string>
+    <string name="please_enter_name">Vui lòng nhập họ tên</string>
+    <string name="please_enter_student_id">Vui lòng nhập MSSV</string>
+    <string name="please_enter_email">Vui lòng nhập email</string>
+    <string name="please_enter_phone">Vui lòng nhập số điện thoại</string>
 </resources>
