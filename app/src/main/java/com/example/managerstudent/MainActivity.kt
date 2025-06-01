@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonAdd: ImageButton
     private lateinit var recyclerViewStudents: RecyclerView
     private lateinit var studentAdapter: StudentAdapter
-    private val studentList = mutableListOf<Student>()
+    private lateinit var databaseHelper: DatabaseHelper
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,9 +26,14 @@ class MainActivity : AppCompatActivity() {
         buttonAdd = findViewById(R.id.buttonAdd)
         recyclerViewStudents = findViewById(R.id.recyclerViewStudents)
 
+        databaseHelper = DatabaseHelper(this)
+        val studentList = databaseHelper.getAllStudents().toMutableList()
+
         studentAdapter = StudentAdapter(studentList) { student ->
-            studentList.remove(student)
-            studentAdapter.notifyDataSetChanged()
+            if (databaseHelper.deleteStudent(student.id)) {
+                studentList.remove(student)
+                studentAdapter.notifyDataSetChanged()
+            }
         }
 
         recyclerViewStudents.layoutManager = LinearLayoutManager(this)
@@ -39,10 +44,13 @@ class MainActivity : AppCompatActivity() {
             val id = editTextId.text.toString().trim()
 
             if (name.isNotEmpty() && id.isNotEmpty()) {
-                studentList.add(0, Student(name, id))
-                studentAdapter.notifyDataSetChanged()
-                editTextName.setText("")
-                editTextId.setText("")
+                val student = Student(name, id)
+                if (databaseHelper.addStudent(student)) {
+                    studentList.add(0, student)
+                    studentAdapter.notifyDataSetChanged()
+                    editTextName.setText("")
+                    editTextId.setText("")
+                }
             }
         }
     }
