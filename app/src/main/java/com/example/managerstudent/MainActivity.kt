@@ -6,15 +6,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
-import android.widget.ImageButton
+import com.google.android.material.button.MaterialButton
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     private lateinit var editTextName: TextInputEditText
     private lateinit var editTextId: TextInputEditText
-    private lateinit var buttonAdd: ImageButton
     private lateinit var recyclerViewStudents: RecyclerView
+    private lateinit var buttonAdd: MaterialButton
     private lateinit var studentAdapter: StudentAdapter
-    private lateinit var databaseHelper: DatabaseHelper
+    private lateinit var studentDao: StudentDao
+    private val studentList = mutableListOf<Student>()
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,30 +31,45 @@ class MainActivity : AppCompatActivity() {
         buttonAdd = findViewById(R.id.buttonAdd)
         recyclerViewStudents = findViewById(R.id.recyclerViewStudents)
 
-        databaseHelper = DatabaseHelper(this)
-        val studentList = databaseHelper.getAllStudents().toMutableList()
+        // Khởi tạo Room database
+        val db = StudentDatabase.getDatabase(this)
+        studentDao = db.studentDao()
 
-        studentAdapter = StudentAdapter(studentList) { student ->
-            if (databaseHelper.deleteStudent(student.id)) {
-                studentList.remove(student)
-                studentAdapter.notifyDataSetChanged()
+        // Load danh sách sinh viên
+        CoroutineScope(Dispatchers.IO).launch {
+            val students = studentDao.getAllStudents()
+            withContext(Dispatchers.Main) {
+                studentList.addAll(students)
+                studentAdapter = StudentAdapter(studentList) { student ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val deletedRows = studentDao.delete(student)
+                        if (deletedRows > 0) {
+                            withContext(Dispatchers.Main) {
+                                studentList.remove(student)
+                                studentAdapter.notifyDataSetChanged()
+                            }
+                        }
+                    }
+                }
+                recyclerViewStudents.layoutManager = LinearLayoutManager(this@MainActivity)
+                recyclerViewStudents.adapter = studentAdapter
             }
         }
-
-        recyclerViewStudents.layoutManager = LinearLayoutManager(this)
-        recyclerViewStudents.adapter = studentAdapter
 
         buttonAdd.setOnClickListener {
             val name = editTextName.text.toString().trim()
             val id = editTextId.text.toString().trim()
 
             if (name.isNotEmpty() && id.isNotEmpty()) {
-                val student = Student(name, id)
-                if (databaseHelper.addStudent(student)) {
-                    studentList.add(0, student)
-                    studentAdapter.notifyDataSetChanged()
-                    editTextName.setText("")
-                    editTextId.setText("")
+                val student = Student(studentId = id, name = name)
+                CoroutineScope(Dispatchers.IO).launch {
+                    studentDao.insert(student)
+                    withContext(Dispatchers.Main) {
+                        studentList.add(0, student)
+                        studentAdapter.notifyDataSetChanged()
+                        editTextName.setText("")
+                        editTextId.setText("")
+                    }
                 }
             }
         }
